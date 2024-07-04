@@ -1,7 +1,7 @@
 module uart_tx(
 	//DO NOT EDIT any part of this port declaration
 	input 		clock, rst, send,
-	input [1:0]	buad_rate,
+	input [1:0]	baud_rate,
 	input [7:0] data_in, 
 	input [1:0] parity_type, 	//refer to the block comment above. 
 	input 		stop_bits, 		//low when using 1 stop bit, high when using two stop bits
@@ -22,6 +22,5 @@ module uart_tx(
 	frame_gen	frame_gen1  (rst, data_in, parity_out, parity_type, stop_bits, data_length, frame_out);
 	baud_gen	baud_gen1	(rst, clock, baud_rate, baud_out);
 	piso		shift_reg1	(rst, frame_out, parity_type, stop_bits, data_length, send, baud_out, data_out, p_parity_out, tx_active, tx_done);
-	
 
 endmodule
